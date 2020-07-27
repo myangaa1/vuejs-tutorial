@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1st</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="increase(50)">50-р Нэмэгдүүлэх</button>
+      <button v-on:click="counter++">1-р Нэмэгдүүлэх</button>
+      <p>
+        {{ counter * 2 > 50 ? '50-аас их утга авсан' : '50-аас бага утга авсан'
+        }}
+      </p>
+      <p v-on:mouseover="updateCoordinate">
+        Координат: {{ x }}, {{ y }}
+        <span v-on:mousemove.stop>Stop</span>
+      </p>
+      <input type="text" v-on:keyup.enter.space.esc="alertMe" />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          counter: 0,
+          x: 0,
+          y: 0,
+        },
+        methods: {
+          increase: function (step) {
+            this.counter += step;
+          },
+          updateCoordinate: function (event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+          },
+          alertMe: function () {
+            alert("alertMe");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
