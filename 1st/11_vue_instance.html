@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1st</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ title }}</h1>
+      <button @click="show">Текстийг харуулах</button>
+      <hr />
+      <p v-if="showText">Энэ текст нөхцөл шалгаж, түүний дараа харагдана.</p>
+      <hr />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Гарчиг 1",
+          showText: false,
+        },
+        methods: {
+          show: function () {
+            this.showText = !this.showText;
+            this.updateTitle("Гарчиг шинэчлэв...");
+          },
+          updateTitle: function (title) {
+            this.title = title;
+          },
+        },
+        computed: {
+          lowerCaseTitle: function () {
+            return this.title.toLowerCase();
+          },
+        },
+        watch: {
+          title: function (value) {
+            alert("Гарчиг өөрчлөгдсөн, шинэ утга нь " + value);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
